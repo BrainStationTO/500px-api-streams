@@ -4,7 +4,7 @@
 		<title>Assignment</title>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script>
-			var page = 1;
+			var page = 0;
 			var gettingPage = false;
 			var threshold = 100;
 			var params = {
@@ -31,13 +31,15 @@
 				console.log('window.innerHeight: ' + window.innerHeight);
 				console.log('document.body.clientHeight: ' + document.body.clientHeight);
 				if (document.body.scrollTop + window.innerHeight > document.body.clientHeight - threshold) {
-					getPage(++page);
+					getPage(page);
 				}
 			});
-			function getPage(page) {
+			function getPage(_page) {
 				if (gettingPage) return;
+				page = ++_page;
 				params['page'] = page;
 				gettingPage = true;
+				 3
 				$.get(
 					'https://api.500px.com/v1/photos.json?' + $.param(params),
 					function (data) {
@@ -66,6 +68,7 @@
 						gettingPage = false;
 					}
 				);
+				console.log(page);
 			}
 		</script>
 		<style>
