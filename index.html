@@ -22,7 +22,7 @@
 				var feature = location.hash.replace('#', '');
 				console.log(feature);
 				params['feature'] = feature;
-				getPage(1);
+				getPage(0);
 				$('.options a').removeClass('active');
 				$('.options a[href="#' + feature + '"]').addClass('active');
 			});
